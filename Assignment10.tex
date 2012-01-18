@@ -20,7 +20,7 @@
 
 \title{Real Analysis $\mathbb{I}$: \\ Assignment 10}
 \author{Andrew Rickert}
-\date{Started: January 4, 2011 \\ \hspace{1pt} Ended: January ??,  2011}                                           % Activate to display a given date or no date
+\date{Started: January 17, 2011 \\ \hspace{1pt} Ended: January ??,  2011}                                           % Activate to display a given date or no date
 
 \begin{document}
 \maketitle
@@ -84,7 +84,52 @@ We are given a function $\varphi : [0,\infty) \to \mathbb{R}$ and given that it 
 \[ 0 < \varphi(t) \le \frac{t}{2+t} \quad \text{for $t \in [0,\infty)$} \]
 If we know define a sequence by $f_0(t) = \varphi(t)$ and $f_{n+1}(t) = \varphi(f_n(t))$ and let 
 \[ F(t) = \sum_{n=0}^\infty f_n(t) \]
-then we want to show that $F$ is continuous and converges for every $t \in [0,\infty)$.
+then we want to show that $F$ is continuous and converges for every $t \in [0,\infty)$.\\
+
+\noindent We start by defining a sequence $S_n$ as follows 
+\begin{equation}
+S_n(t) = \sum_{k = 0}^n f_n(t)
+\end{equation}
+
+\noindent Since $\varphi : [0,\infty) \to (0,1)$, $f_0(t) = \varphi(t)$ and $f_{n+1}(t) = \varphi(f_n(t))$ it can be shown inductively that $f_n : [0,\infty) \to (0,1)$ for $n \ge 0$.  Because $\varphi(t)$ is continuous for $t \in [0,\infty)$ and $f_n(t) = \varphi(f_{n-1}(t))$ it follows from the previous statements that $f_n$ is continuous for $n \ge 0$. Intuitively this is so because $f_n(t)$ is just $\varphi(t)$ with a domain restricted to an interval subset of $[0,\infty)$. \\
+\indent Because the finite sum of continuous functions is continuous, $S_n$ is continuous for all $n$. By a theorem in rudin we can solve the problem by showing the uniform convergence of $S_n$ which says then that $\lim_{n \to \infty} S_n = F(t)$ is continuous.\\
+\indent First we show that the function $B(t) = \frac{t}{2+t}$ is increasing on $t \in [0,\infty)$. This is shown in the following calculation. Let $t_1 \le t_2$:
+\begin{eqnarray*}
+t_1 \le t_2 &\implies& 2 t_1 \le  2 t_2 \\
+	       &\implies& 2 t_1 + t_1 t_2 \le  2 t_2 + t_1 t_2 \\
+	       &\implies& t_1 (2 + t_2) \le t_2 (2 + t_1) \\
+	       &\implies& \frac{t_1}{2 + t_1} \le  \frac{t_2}{2 + t_2}  \quad \text{ since $0 \le t_1,t_2$}\\
+	       &\implies& B(t_1) \le  B(t_2)
+\end{eqnarray*}
+This shows that $B(t)$ is an increasing function. This allows us to show that if $b$ is an upper bound on a set $T$ that is, if $t \le b$ for $t \in T$ and $f$ is increasing on $T$ then, $f(b)$ is an upper bound for $f(T)$. This is true because $t \le b$ for all $t \in T$ and since $f$ is increasing we have $f(t) \le f(b)$ for all $t \in T$ which shows that $f(b)$ is an upper bound for $f(T)$.
+We now show that 
+\begin{equation}
+f_n(t) < \frac{1}{2^{n+1}-1} \quad \text{for $n \ge 0$} \label{eqn:fnbound}
+\end{equation}
+For $n = 0$ we have $f_0(t) = \varphi(t)$. Since $0 \le t$ then $0 \le t < t + 2$ we get $0 \le \frac{t}{2+t} < 1$. This establishes the induction base. We now assume the relationship in ($\ref{eqn:fnbound}$) holds. 
+\newpage
+We calculate as follows:
+\begin{eqnarray*}
+f_{n+1}(t) &=& \varphi(f_n(t)) \\
+	     &\le& \frac{f_n(t)}{2 + f_n(t)} \\
+	     &<& \frac{ \frac{1}{2^{n+1}-1} }{ 2 + \frac{1}{2^{n+1}-1} } \quad \text{because B(t) is increasing}\\
+	     &=&  \frac{ \frac{1}{2^{n+1}-1} }{\frac{2(2^{n+1}-1) + 1}{2^{n+1}-1} } \\
+	     &=&  \frac{1}{2(2^{n+1}-1) + 1}\\
+	     &=&  \frac{1}{2^{n+2}-1}\\
+\end{eqnarray*}
+This completes the induction.
+Since $x_n = \frac{1}{2^{n+1}-1} < \frac{1}{2^{n+1}}$ is a geometric series we know that $\sum_n x_n$ converges. By the cauchy convergence criterion for a given $\epsilon$ there is an $N$ such that for $n,m > N$ we have 
+\begin{equation}
+|\sum_m^n  \frac{1}{2^{n+1}-1} | < \epsilon \label{eqn:geocauchy}
+\end{equation}
+
+\noindent For $\epsilon$ we choose $N$ as above and calculate:
+\begin{eqnarray*}
+|S_n(t)-S_m(t)| &=& |\sum_{k=m}^n f_k(t)| \\
+		         &<& |\sum_{k=m}^n \frac{1}{2^{n+1}-1}| \quad \text{by equation ($\ref{eqn:fnbound}$)} \\
+		         &<& \epsilon  \quad \text{by equation ($\ref{eqn:geocauchy}$)} \\
+\end{eqnarray*}
+By the cauchy criterion of uniform convergence the sequence $S_n(t) = \sum_{k=0}^n f_n(t)$ converges uniformly which finishes the problem.
 
 \vspace{15pt}
 \begin{flushleft} 
