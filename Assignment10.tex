@@ -32,13 +32,59 @@
 \rule{500pt}{1pt}\\
 \end{flushleft} 
 
-
+\noindent First, we want to show that a sequence of functions defined by 
+\[ f_0(t) = \sin t \quad \text{and} \quad f_{n+1}(t) = \frac{2}{3}f_n(t) + 1\]
+is such that $\lim_{n \to \infty} f_n(t) \to 3$ uniformly on $\mathbb{R}$. Lastly we want to know what happens in the case that $f_0(t) = t^2$.\\
+\indent We answer both questions by considering the mapping $T(x) = \frac{2}{3}x + 1$. If we define $T_1(x) = T(x)$ and $T_{n+1}(x) = \frac{2}{3}T_n(x) + 1$ then we find that
+\begin{equation}
+T_n(x) = \left( \frac{2}{3} \right)^n x + \sum_{k=0}^{n-1} \left( \frac{2}{3} \right)^k \quad \text{for $n \ge 1$} \label{eqn:Tfunction}
+\end{equation}
+This can be shown inductively. For $n=1$ we have $T_1 =  \left( \frac{2}{3} \right)^1 x +  \left( \frac{2}{3} \right)^0 =  \frac{2}{3} x + 1$ which establishes the induction base. Now we assume the formula ($\ref{eqn:Tfunction}$) is true for $T_n$ and calculate as follows:
+\begin{eqnarray*}
+T_{n+1}(x) &=& \frac{2}{3}T_n(x) + 1 \\
+		 &=& \frac{2}{3}\left( \left( \frac{2}{3} \right)^n x + \sum_{k=0}^{n-1} \left( \frac{2}{3} \right)^k \right) + 1 \\
+		 &=& \left( \frac{2}{3} \right)^{n+1} x + \sum_{k=1}^{n} \left( \frac{2}{3} \right)^k + 1 \\
+		 &=& \left( \frac{2}{3} \right)^{n+1} x + \sum_{k=0}^{n} \left( \frac{2}{3} \right)^k\\
+\end{eqnarray*}
+So the formula ($\ref{eqn:Tfunction}$) is true for $n+1$ which completes the induction.\\
+We now let $x = \sin t$ and get $f_n(t) = T_n(\sin t)$. We choose $N_1$ such that $|\sum_{k=0}^{n-1} \left( \frac{2}{3} \right)^k - 3| < \frac{\epsilon}{2}$ for $n > N_1$ and $N_2$ such that $|\left( \frac{2}{3} \right)^n| < \frac{\epsilon}{2}$ for $n > N_2$. If we let $N = $ Max$(N_1, N_2)$ we may calculate as follows:
+\begin{eqnarray*}
+|f_n(t) - 3| &=& |\left( \frac{2}{3} \right)^n \sin t + \sum_{k=0}^{n-1} \left( \frac{2}{3} \right)^k - 3| \\
+		&\le& |\left( \frac{2}{3} \right)^n \sin t| + |\sum_{k=0}^{n-1} \left( \frac{2}{3} \right)^k - 3| \\
+		&\le& |\left( \frac{2}{3} \right)^n| + |\sum_{k=0}^{n-1} \left( \frac{2}{3} \right)^k - 3| \quad \text{since \;$\sin t \le 1$ for $t \in \mathbb{R}$} \\
+		&\le& \frac{\epsilon}{2} + \frac{\epsilon}{2} \quad \text{for $n \ge N$} \\
+		&=& \epsilon
+\end{eqnarray*}
+So we have shown that $|f_n(t) - 3| < \epsilon$ for $t \in \mathbb{R}$ which gives the uniform convergence of $f_n \to 3$.\\
+\indent If we now let $x = t^2$ then $f_n(t) = T_n(t^2)$. If the domain of $f_0(t) = t^2$ is bounded, then $t^2 \le b^2$ where $b$ is the bound. Since $\lim_{n \to \infty} c x_n = c \lim_{n \to \infty} x_n$ where $c$ is a constant we may pick an $N_1$ such that $|\left( \frac{2}{3} \right)^n b^2| < \frac{\epsilon}{2}$ where $n > N_1$. We may perform the same calculation as above to derive:
+\begin{eqnarray*}
+|f_n(t) - 3| &=& |\left( \frac{2}{3} \right)^n t^2 + \sum_{k=0}^{n-1} \left( \frac{2}{3} \right)^k - 3| \\
+		&\le& |\left( \frac{2}{3} \right)^n t^2| + |\sum_{k=0}^{n-1} \left( \frac{2}{3} \right)^k - 3| \\
+		&\le& |\left( \frac{2}{3} \right)^n b^2| + |\sum_{k=0}^{n-1} \left( \frac{2}{3} \right)^k - 3| \quad \text{since $t \le b$ for $t \in [a,b]$} \\
+		&\le& \frac{\epsilon}{2} + \frac{\epsilon}{2} \quad \text{for $n \ge N$} \\
+		&=& \epsilon
+\end{eqnarray*}
+If the domain of $f_0(t) = t^2$ is $\mathbb{R}$ then we may chose $t'_n = \sqrt{3 \left( \frac{3}{2} \right)^n}$ which gives 
+\begin{eqnarray*}
+ |f_n(t'_n) - 3| &=& |\left( \frac{2}{3} \right)^n t_n^{'2} + \sum_{k=0}^{n-1} \left( \frac{2}{3} \right)^k - 3| \\
+ 		      &=& |\left( \frac{2}{3} \right)^n \left( 3 \left( \frac{3}{2} \right)^n \right) + \sum_{k=0}^{n-1} \left( \frac{2}{3} \right)^k - 3| \\
+		      &=& | 3 + \sum_{k=0}^{n-1} \left( \frac{2}{3} \right)^k - 3| \\
+		      &=& |\sum_{k=0}^{n-1} \left( \frac{2}{3} \right)^k| \ge 1
+\end{eqnarray*}
+So $ |f_n(t'_n) - 3| \ge 1$ for all $n$ which shows that in the case of the unbounded domain the function sequence can not converge.
+\newpage
+ 
 \vspace{15pt}
 \begin{flushleft} 
 \textbf{Class 18.100B} - Problem 2\\
 \rule{500pt}{1pt}\\
 \end{flushleft} 
 
+We are given a function $\varphi : [0,\infty) \to \mathbb{R}$ and given that it is continuous satisfies the following:
+\[ 0 < \varphi(t) \le \frac{t}{2+t} \quad \text{for $t \in [0,\infty)$} \]
+If we know define a sequence by $f_0(t) = \varphi(t)$ and $f_{n+1}(t) = \varphi(f_n(t))$ and let 
+\[ F(t) = \sum_{n=0}^\infty f_n(t) \]
+then we want to show that $F$ is continuous and converges for every $t \in [0,\infty)$.
 
 \vspace{15pt}
 \begin{flushleft} 
