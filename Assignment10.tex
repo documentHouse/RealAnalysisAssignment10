@@ -137,6 +137,19 @@ By the cauchy criterion of uniform convergence the sequence $S_n(t) = \sum_{k=0}
 \rule{500pt}{1pt}\\
 \end{flushleft} 
  
+ We would like to know whether or not the following expression defines a differentiable function on $\mathbb{R}$:
+ \begin{equation}
+ f(t) = \sum_{k=1}^\infty \sin^2 \frac{t}{k} \nonumber
+ \end{equation}
+ 
+ We start by defining the sequence $f_n(t) = \sum_{k = 1}^n \sin \frac{t}{k}$.  By a theorem in rudin, if we can show that there is an $x \in \mathbb{R}$ such that $f_n(x)$ converges and that the sequence $f'_n(t)$ converges uniformly we know the following: That $f_n$ converges uniformly and that $\lim_{n \to \infty} f'_n(t) = f'(t)$. This is to say that $f(t)$ is differentiable which answers the question.\\
+\indent It is now required that first we find a point in $\mathbb{R}$ where $f_n$ converges. This is easy since $f_n(0) = 0$ for all $n \ge 1$. The next part, which is harder, is to show that $f'_n(t)$ converges uniformly. \\
+ \indent The expression for this derivative sequence is
+ \begin{equation}
+  f'_n(t) = \sum_{k=1}^n \frac{2}{k} \sin \frac{t}{k} \cos \frac{t}{k} = \sum_{k=1}^n \frac{1}{k} \sin \frac{2t}{k} \nonumber
+ \end{equation}
+ 
+ 
 \vspace{15pt}
 \begin{flushleft} 
 \textbf{Class 18.100B} - Problem 4\\
