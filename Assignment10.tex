@@ -163,6 +163,51 @@ This shows the $f'_n(t)$ satisfies the cauchy criterion of uniform convergence w
 \rule{500pt}{1pt}\\
 \end{flushleft} 
 
+We want to show that if $x_n \to x$ and $f_n$ is sequence of continuous function such that $f_n \to f$ uniformly then $lim_{n \to \infty} f_n(x_n) \to f(x)$.\\
+Because $x_n \to x$ and the $f_n$ are continuous then $f(x_n) \to f(x)$. That is, for $\epsilon$ there exists an $N_1$ such that for $n > N_1$ we have
+\begin{equation}
+|f(x_n) - f(x)| < \frac{\epsilon}{2} \nonumber
+\end{equation}
+
+\noindent From the uniform convergence of $f_n$ for $\epsilon$ there exists $N_2$ so if $n > N_2$
+\begin{equation}
+|f_n(x) - f(x)| < \frac{\epsilon}{2} \nonumber
+\end{equation}
+
+\noindent Now we let $N = $ Max$(N_1,N_2)$ so for $n > N$ we have 
+\begin{eqnarray*} 
+|f_n(x_n) - f(x)| &=& |f_n(x_n)-f(x_n) + f(x_n) - f(x)| \\
+		        &\le& |f_n(x_n)-f(x_n)| + |f(x_n) - f(x)| \\
+		        &<& \frac{\epsilon}{2} + |f(x_n) - f(x)| \quad \text{By uniform convergence}\\
+		        &<& \frac{\epsilon}{2} + \frac{\epsilon}{2} \quad \text{By continuity}\\
+		        &=& \epsilon
+\end{eqnarray*}
+
+So for $\epsilon$ there exists $N$ such that for $n > N$ we have $|f_n(x_n)-f(x)| < \epsilon$ which is to say that $\lim_{n \to \infty} f_n(x_n) \to f(x)$. This completes the first part of the problem.\\
+%For the second part we take $f_n(x) = \frac{1}{(1+x)^n}$ for $n \ge 1$ and $E = [0,1]$. Since $f(x) = 1+x$, $x^n$ ,$\frac{1}{x}$ are continuous on $E$ and compositions are continuous we know that $f_n(x) = \frac{1}{(1+x)^n}$ is continuous or all $n$. \\
+%We now need to show that $f_n(x_n) \to f(x)$ for all $x_n \to x$. Since the limit function $f(x) \neq 0$ only when $x = 0$ we split the demonstration up into two parts. First we show that $f_n(x_n) \to 0$ if $x_n \to 0$.\\
+%\indent Since $x_n \to x > 0$ we pick a $d > 0$ such that $0 < d < x$ so that 
+%\begin{equation}
+%0 < x - d \label{eqn:nonzerobound}
+%\end{equation}
+%By the convergence of $x_n$ there exists an $N_1$ for $d$ such that if $n > N_1$ we have $|x_n - x| < d$. This implies that $-d < x_n - x < d$ which gives
+%\begin{eqnarray}
+%x-d < x_n &\implies& 0 < x-d < x_n \quad \text{By equation $(\ref{eqn:nonzerobound})$}\nonumber \\
+%	       &\implies& 1 < 1+  x-d < 1+ x_n \nonumber \\
+%	       &\implies& \frac{1}{1+ x_n} < \frac{1}{1+  x-d} \label{eqn:nonzeroupper}
+%\end{eqnarray}
+%We may now calculate the limit for the case $x_n \to x > 0$. Since $1 < 1 + x - d$  by the previous comments we have $\lim_{n\to \infty} \frac{1}{(1+x - d)^n} = 0$ by a theorem in rudin that says: $\lim_{n \to \infty} |x|^n = 0$ if $|x| < 1$. This allows us to show that:
+%\[ \lim_{n \to \infty} f_n(x_n) = \lim_{n \to \infty} \frac{1}{(1+x_n)^n} <  \lim_{n \to \infty} \frac{1}{(1+x - d)^n}  = 0 \quad \text{By equation ($\ref{eqn:nonzeroupper}$) }\]
+%\indent We now show that if $x_n \to 0$ that $\lim_{n \to \infty}f_n(x_n) = 1$. Since $x_n \in [0,1]$ we have 
+%\[ 0 < x_n \implies 1 < 1 + x_n \implies 1 < (1 + x_n)^n \implies \frac{1}{(1 + x_n)^n} < 1\]
+%We can calculate as follows:
+%\begin{eqnarray*}
+%|f_n(x_n) - 1| = |\frac{1}{(1 + x_n)^n} - 1| &=& |\frac{1 - (1 + x_n)^n}{(1 + x_n)^n}| \\
+% &<& |1 - (1 + x_n)^n| \quad \text{by the previous calculation} \\
+% &=& |(1 + x_n)^n - 1| =  |(1 + x_n)^n - 1^n| \\
+% &=& |(1 + x_n)^n - 1|
+%\end{eqnarray*}
+%\indent We know however that $\lim_{n \to \infty}f_n(x) = f(x)$ where $f(x) = 1$ if $x = 0$ and $f(x) = 0$ if $x \neq 0$. A theorem in rudin says that if $f_n$ are continuous and $f_n \to f$ uniformly then $f$ is continuous. The $f_n$ are continuous by hypothesis and the previous paragraphs showed that $f_n(x_n) \to f(x)$ or all $x_n \to x$. This implies that since $f$ is discontinuous, $f_n$ must not be uniformly continuous.
 
 \vspace{15pt}
 \begin{flushleft} 
@@ -183,6 +228,18 @@ This shows the $f'_n(t)$ satisfies the cauchy criterion of uniform convergence w
 \textbf{Class 18.100B} - Problem 7\\
 \rule{500pt}{1pt}\\
 \end{flushleft} 
+
+In the problem we are given sequence $f_n$ on a compact set $K$ that has the following properties:\\
+1) $f_n$ is uniformly bounded\\
+2) $f_n$ is differentiable for all $n$\\
+3) $f'_n$ is uniformly bounded
+We are asked to show that under these conditions there exists a convergent subsequence.
+The Arzela-Ascoli theorem will give the result if $f_n$ is continuous on a compact set (which is guaranteed by condition 2 above), $f_n$ is point wise bounded (which is guaranteed by condition 1 above), and the set $\{f_n\}$ is equicontinuous (which needs to be shown).\\
+By condition 3 there exists an $M$ such that $|f'_n(x)| \le M$ for all $n$. We are given $\epsilon$ and choose $\delta = \frac{\epsilon}{M}$. By the mean value theorem we have for $x < y$ and $|y-x| < \delta$ an $x' \in [x,y]$:
+\[ |f_n(y) - f_n(x)| = |f_n(x')(y - x)| \le |M(y-x)| = M \frac{\epsilon}{M} = \epsilon\]
+Because the bound $|f'_n(x)| \le M$ is valid for all $n$ the above calculation shows that the $\delta = \frac{\epsilon}{M}$ gives $|f_n(y)- f_n(x)| < \epsilon$ for all $n$ which shows that $\{ f_n \}$ is equicontinuous. This completes the proof.
+
+
 
 
 \end{document}  
