@@ -222,6 +222,30 @@ So for $\epsilon$ there exists $N$ such that for $n > N$ we have $|f_n(x_n)-f(x)
 \rule{500pt}{1pt}\\
 \end{flushleft} 
 
+We are given that $\{ f_n \}$ is equicontinuous on a compact set $K$. Also, given that $f_n \to f$ pointwise on $K$ show that $f_n \to f$ uniformly.\\
+By the equicontinuity of $\{ f_n \}$ for a $\epsilon$ there exists a $\delta$ such that $|x - y| < \delta$ we have
+\begin{equation} 
+|f_n(x) - f_n(y)| < \frac{\epsilon}{3} \label{eqn:equibound}
+\end{equation}
+Let $C = \{ N_\delta(x) | N_\delta(x) \; \text{is a neighborhood of radius} \; \delta \; \text{and} \; x \in K \} $. Since $x \in X$ for all $x \in K$, $C$ is a cover of $K$. By the compactness of $K$ there is a finite set of points in $K$, $X = \{ x_1, x_2, \cdots ,x_m \}$ such that $N = \{ N_\delta(x_1), N_\delta(x_2), \cdots, N_\delta(x_m) \}$ cover $K$. \\
+By the pointwise convergence, for each $x_i \in X$ there exists an $N_i$ such that for $n > N_i$ we have:
+\begin{equation}
+|f_n(x_i) - f(x_i)| < \frac{\epsilon}{3} \label{eqn:pointwisebound}
+\end{equation}
+This allows us to allows to also show by taking the limit of both sides of ($\ref{eqn:pointwisebound}$) to get
+\begin{equation}
+|f(x_i) - f(x_i)| \le \frac{\epsilon}{3} \label{eqn:pointwiselimitbound}
+\end{equation}
+If we take $\delta$ as determined above and note that since $N$ is a cover of $K$ that for any $x \in K$ it is necessary that $x \in N_\delta(x_i)$ for some $N_\delta(x_i) \in N$ .We also take $N$ = Max$(N_1,N_2,\cdots,N_m)$ for $n > N$ we have 
+\begin{eqnarray*}
+|f_n(x) - f(x)| &=& |f_n(x) - f_n(x_i) + f_n(x_i) - f(x_i) + f(x_i) - f(x)| \\ 
+		    &\le& |f_n(x) - f_n(x_i)| + |f_n(x_i) - f(x_i)| + |f(x_i) - f(x)| \\
+		    &<& \frac{\epsilon}{3} + |f_n(x_i) - f(x_i)| + |f(x_i) - f(x)| \quad \text{by $(\ref{eqn:equibound})$} \\
+		    &<& \frac{\epsilon}{3} + \frac{\epsilon}{3} + |f(x_i) - f(x)| \quad \text{by $(\ref{eqn:pointwisebound})$} \\
+		    &\le& \frac{\epsilon}{3} + \frac{\epsilon}{3} +  \frac{\epsilon}{3}  \quad \text{by $(\ref{eqn:pointwiselimitbound})$} \\
+		    &=& \epsilon
+\end{eqnarray*}
+So for any $\epsilon $we have a $N$ such that if $n > N$ then $|f_n(x) - f(x)| < \epsilon$ for $x \in K$which says that $f_n \to f$ uniformly on $K$.
 
 \vspace{15pt}
 \begin{flushleft} 
@@ -232,7 +256,7 @@ So for $\epsilon$ there exists $N$ such that for $n > N$ we have $|f_n(x_n)-f(x)
 In the problem we are given sequence $f_n$ on a compact set $K$ that has the following properties:\\
 1) $f_n$ is uniformly bounded\\
 2) $f_n$ is differentiable for all $n$\\
-3) $f'_n$ is uniformly bounded
+3) $f'_n$ is uniformly bounded \\
 We are asked to show that under these conditions there exists a convergent subsequence.
 The Arzela-Ascoli theorem will give the result if $f_n$ is continuous on a compact set (which is guaranteed by condition 2 above), $f_n$ is point wise bounded (which is guaranteed by condition 1 above), and the set $\{f_n\}$ is equicontinuous (which needs to be shown).\\
 By condition 3 there exists an $M$ such that $|f'_n(x)| \le M$ for all $n$. We are given $\epsilon$ and choose $\delta = \frac{\epsilon}{M}$. By the mean value theorem we have for $x < y$ and $|y-x| < \delta$ an $x' \in [x,y]$:
