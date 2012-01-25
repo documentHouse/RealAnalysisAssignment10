@@ -215,6 +215,27 @@ So for $\epsilon$ there exists $N$ such that for $n > N$ we have $|f_n(x_n)-f(x)
 \rule{500pt}{1pt}\\
 \end{flushleft} 
 
+We are given that $\{ f_n \}$ is a sequence of functions Riemann-integrable on all compact subintervals of $[0,\infty)$. It is also given that \\
+1) $f_n \to 0$ uniformly on every compact subset of $[0,\infty)$\\
+2) $0 \le f_n(t) \le e^{-t}$ for all $t \ge 0$ and $n \in \mathbb{N}$
+And we must show that:
+\begin{equation}
+\lim_{n \to \infty} \int_0^\infty f_n(t) dt = 0 \label{eqn:targetzeroconverge}
+\end{equation}
+
+We start by noting a theorem in Rudin if $f_n \to f$ uniformly on a compact interval then it is true that 
+\[ \int_a^b f(t) dt  = \lim_{n \to \infty} \int_a^b f_n(t) dt \]
+We choose the arbitrary compact interval $[0,b]$ and note that $f_n \to 0$ on this interval by condition 1 above so we have
+\[ \lim_{n \to \infty} \int_0^b f_n(t) dt = \int_0^b f(t) dt =  \int_0^b 0 \, dt = 0 \]
+We now point out that if $\lim_{n \to \infty} \lim_{b \to \infty} \int_0^b f(t)dt = \lim_{b \to \infty} \lim_{n \to \infty} \int_0^b f(t)dt$ then we may derive
+\begin{eqnarray*}
+ \lim_{n \to \infty} \int_0^\infty f_n(t) dt &=& \lim_{n \to \infty}  \lim_{b \to \infty} \int_0^b f_n(t) dt \\
+  &=& \lim_{b \to \infty}  \lim_{n \to \infty} \int_0^b f_n(t) dt \\
+  &=& \lim_{b \to \infty}  0 \quad \text{by the previous calculation} \\
+  &=& 0 
+ \end{eqnarray*}
+
+
 
 \vspace{15pt}
 \begin{flushleft} 
