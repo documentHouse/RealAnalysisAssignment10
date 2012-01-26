@@ -234,8 +234,26 @@ We now point out that if $\lim_{n \to \infty} \lim_{b \to \infty} \int_0^b f(t)d
   &=& \lim_{b \to \infty}  0 \quad \text{by the previous calculation} \\
   &=& 0 
  \end{eqnarray*}
-
-
+\noindent Which is the desired conclusion. \\
+We define a function as follows $F_n(b) = \int_0^b f_n(t)dt$ and note that there is a theorem in Rudin, used to show that uniform convergence preserves continuity, that says that if $F_n(b)$ is uniformly convergent in its domain $[0,\infty)$ then $lim_{n \to \infty} \lim_{b \to \infty} F_n(b) = lim_{b \to \infty} \lim_{n \to \infty} F_n(b)$. The proof of this theorem also assumes a finite limit for $\lim_{b \to \infty} F_n(b)$ for all $n$. Because $0 \le f_n(t) \le e^{-t} \implies 0 \le \int_0^\infty f_n(t)dt \le 1$ for all $n$ this satisfies the proofs assumption. If we can show that $F_n(b)$ converges uniformly for all $b \in [0,\infty)$ then we will be done.\\
+\indent We are given an $\epsilon$ for which we choose $t_0 = 0$ if $\epsilon \ge 1$ otherwise we choose $t_0$ such that $\frac{\epsilon}{2} = e^{-t_0}$. We may now calculate as follows:
+\begin{eqnarray}
+|F_n(b) - F_m(b)| &=& |\int_0^b f_n(t) dt - \int_0^b f_m(t) dt | \nonumber \\
+			   &=& |\int_0^b f_n(t) - f_m(t) dt | \nonumber \\
+			   &\le& |\int_0^\infty f_n(t) - f_m(t) dt | \nonumber \\
+			   &\le& |\int_0^\infty f_n(t) dt | \quad \text{Since $0 \le f_n(t) \implies -f_n(t) \le 0$} \nonumber \\
+			   &=& \lim_{b'' \to \infty} \left( \int_0^{b'} f_n(t) dt + \int_{b'}^{b''} f_n(t) dt \right) \label{eqn:brokenupint} 
+\end{eqnarray}
+Here we note that since $f_n(t) \to 0$ uniformly on the compact subinterval $[0,b']$ there must be an $N$ such that if $m,n > N$ we have $|f_n(t)| < \frac{\epsilon}{2 b'}$. We also let $b' = t_0$ so that $\frac{\epsilon}{2} = e^{-b'}$ when $\epsilon < 1$. We may now calculate from the expression in $(\ref{eqn:brokenupint})$
+\begin{eqnarray*}
+\lim_{b'' \to \infty} \left( \int_0^{b'} f_n(t) dt + \int_{b'}^{b''} f_n(t) dt \right) &=& \lim_{b'' \to \infty} \left( \int_0^{b'} \frac{\epsilon}{2b'} dt + \int_{b'}^{b''} f_n(t) dt \right) \\
+&=& \lim_{b'' \to \infty} \left( \frac{\epsilon}{2} + \int_{b'}^{b''} f_n(t) dt \right) \\
+&\le& \lim_{b'' \to \infty} \left( \frac{\epsilon}{2} + \int_{b'}^{b''} e^{-t} dt \right) \\
+&=& \lim_{b'' \to \infty} \left( \frac{\epsilon}{2} + e^{-b'} - e^{-b''} \right) \\
+&=& \lim_{b'' \to \infty} \left( \frac{\epsilon}{2} + \frac{\epsilon}{2} - e^{-b''} \right) \\
+&=& \epsilon - \lim_{b'' \to \infty}  e^{-b''} = \epsilon \\
+\end{eqnarray*}
+So we have shown for $\epsilon$ there exists an $N$ such that for $n,m > N$ we have $|F_n(b) - F_m(b)| < \epsilon$ for all $b \in [0,\infty)$ which shows that $F_n(b)$ converges uniformly. This completes the proof.
 
 \vspace{15pt}
 \begin{flushleft} 
@@ -266,7 +284,7 @@ If we take $\delta$ as determined above and note that since $N$ is a cover of $K
 		    &\le& \frac{\epsilon}{3} + \frac{\epsilon}{3} +  \frac{\epsilon}{3}  \quad \text{by $(\ref{eqn:pointwiselimitbound})$} \\
 		    &=& \epsilon
 \end{eqnarray*}
-So for any $\epsilon $we have a $N$ such that if $n > N$ then $|f_n(x) - f(x)| < \epsilon$ for $x \in K$which says that $f_n \to f$ uniformly on $K$.
+So for any $\epsilon$ we have a $N$ such that if $n > N$ then $|f_n(x) - f(x)| < \epsilon$ for $x \in K$which says that $f_n \to f$ uniformly on $K$.
 
 \vspace{15pt}
 \begin{flushleft} 
